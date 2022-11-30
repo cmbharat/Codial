@@ -1,6 +1,53 @@
+const user = require("../models/user");
+
 module.exports.profile = function (req, res) {
   // res.end("<h1>profile module</h1>");
   return res.render("profile", {
     title: "Profile",
   });
+};
+module.exports.signUp = function (req, res) {
+  return res.render("signup", {
+    title: "Codial|signup",
+  });
+};
+module.exports.signIn = function (req, res) {
+  return res.render("signin", {
+    title: "Codial|signin",
+  });
+};
+
+//get the signup data
+module.exports.create = function (req, res) {
+  //todo later
+  if (req.body.password != req.body.confirmPassword) {
+    return res.redirect("back");
+  }
+  user.findOne(
+    {
+      email: req.body.email,
+    },
+    function (err, user) {
+      if (err) {
+        console.log("error in finding user in signing up");
+        return;
+      }
+      if (!user) {
+        user.create(req.body, function (err, user) {
+          if (err) {
+            console.log("error in creating user while signing up");
+            return;
+          }
+          return res.redirect("/users/signin");
+        });
+      } else {
+        return res.redirect("back");
+      }
+    }
+  );
+};
+
+//get the signin and create session for user
+module.exports.createSession = function (req, res) {
+  //todo later
 };
