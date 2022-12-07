@@ -7,11 +7,18 @@ module.exports.profile = function (req, res) {
   });
 };
 module.exports.signUp = function (req, res) {
+  if (req.isAuthenticated()) {
+    return res.redirect("/users/profile");
+  }
+
   return res.render("signup", {
     title: "Codial|signup",
   });
 };
 module.exports.signIn = function (req, res) {
+  if (req.isAuthenticated()) {
+    return res.redirect("/users/profile");
+  }
   return res.render("signin", {
     title: "Codial|signin",
   });
@@ -20,6 +27,7 @@ module.exports.signIn = function (req, res) {
 //get the signup data
 module.exports.create = function (req, res) {
   //todo later
+  console.log("inside create route");
   if (req.body.password != req.body.confirmPassword) {
     return res.redirect("back");
   }
@@ -49,5 +57,6 @@ module.exports.create = function (req, res) {
 
 //get the signin and create session for user
 module.exports.createSession = function (req, res) {
-  //todo later
+  console.log("inside create session");
+  return res.redirect("/");
 };

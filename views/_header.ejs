@@ -1,1 +1,12 @@
-<header>PAGE HEADER</header>
+<header>PAGE HEADER
+    <ul>
+        <% if (locals.user){%>
+            <li>
+                <a href="/users/signout">Sign out</a>
+            </li>
+            <%}else{%>
+                <a href="/users/signin">Sign in</a>
+                <a href="/users/signup">Sign up</a>
+                <%}%>
+    </ul>                                                                
+</header>
