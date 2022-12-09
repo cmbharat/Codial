@@ -55,6 +55,16 @@ module.exports.create = function (req, res) {
   );
 };
 
+module.exports.destroySession = function (req, res) {
+  req.logout(function (err) {
+    if (err) {
+      console.log("error in logging out" + log);
+      return;
+    }
+    return res.redirect("/");
+  });
+};
+
 //get the signin and create session for user
 module.exports.createSession = function (req, res) {
   console.log("inside create session");
