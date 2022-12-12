@@ -1,12 +1,27 @@
-<header>PAGE HEADER
-    <ul>
-        <% if (locals.user){%>
-            <li>
-                <a href="/users/signout">Sign out</a>
-            </li>
-            <%}else{%>
-                <a href="/users/signin">Sign in</a>
-                <a href="/users/signup">Sign up</a>
-                <%}%>
-    </ul>                                                                
+<header id="layout-header">PAGE HEADER
+    <nav>
+        <div class="mini-logo">
+            <p>
+                <a href='/'>
+                    codeial
+                </a>
+            </p>
+        </div>
+
+        <div class="auth-links">
+            <ul>
+                <% if (locals.user){%>
+                    <li>
+                        <a href="/users/profile">Sign out</a>
+                    </li>
+                    <li>
+                        <a href="/users/signout">Sign out</a>
+                    </li>
+                    <%}else{%>
+                        <a href="/users/signin">Sign in</a>
+                        <a href="/users/signup">Sign up</a>
+                        <%}%>
+            </ul>
+        </div>
+    </nav>
 </header>

@@ -1,9 +1,9 @@
-const user = require("../models/user");
+const User = require("../models/user");
 
 module.exports.profile = function (req, res) {
   // res.end("<h1>profile module</h1>");
   return res.render("profile", {
-    title: "Profile",
+    title: "User Profile",
   });
 };
 module.exports.signUp = function (req, res) {
@@ -12,7 +12,7 @@ module.exports.signUp = function (req, res) {
   }
 
   return res.render("signup", {
-    title: "Codial|signup",
+    title: "Codial | signup",
   });
 };
 module.exports.signIn = function (req, res) {
@@ -28,10 +28,10 @@ module.exports.signIn = function (req, res) {
 module.exports.create = function (req, res) {
   //todo later
   console.log("inside create route");
-  if (req.body.password != req.body.confirmPassword) {
+  if (req.body.password != req.body.confirm_password) {
     return res.redirect("back");
   }
-  user.findOne(
+  User.findOne(
     {
       email: req.body.email,
     },
@@ -41,7 +41,7 @@ module.exports.create = function (req, res) {
         return;
       }
       if (!user) {
-        user.create(req.body, function (err, user) {
+        User.create(req.body, function (err, user) {
           if (err) {
             console.log("error in creating user while signing up");
             return;
@@ -55,6 +55,12 @@ module.exports.create = function (req, res) {
   );
 };
 
+//get the signin and create session for user
+module.exports.createSession = function (req, res) {
+  // console.log("inside create session");
+  return res.redirect("/");
+};
+
 module.exports.destroySession = function (req, res) {
   req.logout(function (err) {
     if (err) {
@@ -63,10 +69,4 @@ module.exports.destroySession = function (req, res) {
     }
     return res.redirect("/");
   });
-};
-
-//get the signin and create session for user
-module.exports.createSession = function (req, res) {
-  console.log("inside create session");
-  return res.redirect("/");
 };
