@@ -101,9 +101,9 @@ module.exports.create = function (req, res) {
 //get the signin and create session for user
 module.exports.createSession = function (req, res) {
   // console.log("inside create session");
-  console.log("request------>", req);
+  // console.log("request------>", req);
   req.flash("success", "Logged in Successfully");
-  console.log("response------>", res);
+  // console.log("response------>", res);
   return res.redirect("/");
 };
 

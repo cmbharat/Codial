@@ -32,11 +32,8 @@ router.get(
 //route where we recieve the data from google
 router.get(
   "/auth/google/callback",
-  passport.authenticate(
-    "google",
-    { failureRedirect: "/users/signin" },
-    userController.createSession
-  )
+  passport.authenticate("google", { failureRedirect: "/users/signin" }),
+  userController.createSession
 );
 
 module.exports = router;

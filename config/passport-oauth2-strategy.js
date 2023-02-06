@@ -21,7 +21,7 @@ passport.use(
           console.log("error in finding the user", err);
           return;
         }
-        console.log(profile);
+        // console.log(profile);
         if (user) {
           return done(null, user);
         } else {
