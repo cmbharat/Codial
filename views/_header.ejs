@@ -1,4 +1,4 @@
-<header id="layout-header">PAGE HEADER
+<header id="layout-header">
     <nav>
         <div class="mini-logo">
             <p>
@@ -10,18 +10,27 @@
 
         <div class="auth-links">
             <ul>
-                <% if (locals.user){%>
+                <% if (locals.user){ %>
                     <li>
-                        <a href="/users/profile">Sign out</a>
+                        <a href="/users/profile/<%= locals.user._id %>">                            <%= user.name %>
+                        </a>
                     </li>
                     <li>
-                        <a href="/users/signout">Sign out</a>
+                        <a href="/users/signout">Sign Out</a>
                     </li>
-                    <%}else{%>
-                        <a href="/users/signin">Sign in</a>
-                        <a href="/users/signup">Sign up</a>
-                        <%}%>
+                    <% }else{ %>
+                        <li>
+                            <a href="/users/signin">Sign In</a>
+                        </li>
+                        <li>
+                            <a href="/users/signup">Sign Up</a>
+                        </li>
+
+                        <% } %>
             </ul>
         </div>
     </nav>
+
+
+
 </header>
