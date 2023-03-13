@@ -1,0 +1,12 @@
+[0mGET / [32m200[0m 256.819 ms - 8802[0m
+[0mGET /favicon.ico [33m404[0m 12.952 ms - 150[0m
+[0mGET / [36m304[0m 70.949 ms - -[0m
+[0mGET /users/signin [32m200[0m 10.186 ms - 2069[0m
+[0mPOST /users/create-session [36m302[0m 45.536 ms - 46[0m
+[0mGET / [32m200[0m 50.841 ms - 13048[0m
+[0mGET / [32m200[0m 357.204 ms - 8801[0m
+[0mGET /favicon.ico [33m404[0m 17.721 ms - 150[0m
+[0mGET / [36m304[0m 53.611 ms - -[0m
+[0mGET / [36m304[0m 201.075 ms - -[0m
+[0mGET / [36m304[0m 157.974 ms - -[0m
+[0mGET / [36m304[0m 173.259 ms - -[0m

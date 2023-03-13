@@ -1,7 +1,10 @@
 const express = require("express");
 const port = 8000;
 const path = require("path");
+
 const app = express();
+
+require("./config/view-helper")(app);
 const expressLayouts = require("express-ejs-layouts");
 const db = require("./config/mongoose");
 const cookieParser = require("cookie-parser");
@@ -14,25 +17,32 @@ const MongoStore = require("connect-mongo");
 const sassMiddleware = require("node-sass-middleware");
 const flash = require("connect-flash");
 const customMiddleware = require("./config/middleware");
+const morgan = require("morgan");
 const chatServer = require("http").Server(app);
 const chatSockets = require("./config/chat_sockets").chatSockets(chatServer);
+const env = require("./config/environment");
 chatServer.listen(5000);
 console.log("chat server is listening on port 5000");
-app.use(
-  sassMiddleware({
-    src: "./static/scss",
-    dest: "./static/css",
-    debug: true,
-    outputStyle: "extended",
-    prefix: "/css",
-  })
-);
+
+if (env.name == "development") {
+  app.use(
+    sassMiddleware({
+      src: "./static/scss",
+      dest: "./static/css",
+      debug: true,
+      outputStyle: "extended",
+      prefix: "/css",
+    })
+  );
+}
+
 app.use(express.urlencoded());
 app.use(cookieParser());
 app.use(express.static("./static"));
 // app.use(express.static(path.join(__dirname, "static")));
 
 app.use("/uploads", express.static(__dirname + "/uploads"));
+app.use(morgan(env.morgan.mode, env.morgan.options));
 app.use(expressLayouts);
 
 //extract style and script from sub pages into the layout
